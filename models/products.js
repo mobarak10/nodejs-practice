@@ -26,6 +26,7 @@ module.exports  = class Product {
     }
 
     save() {
+        this.id = Math.random().toString(); // generate a random id for the product
         getProductsFromFile((products) => { // return a callback function with products array from file
             products.push(this); // push the new product to products array
             fs.writeFile(p, JSON.stringify(products), (err) => { // replace the file with updated products array in JSON format & callback function to handle error
@@ -37,4 +38,12 @@ module.exports  = class Product {
     static getProducts(callback) {
         getProductsFromFile(callback); // return a callback function with products array from file
     }
+
+    static getProductById(id, callback) {
+        getProductsFromFile((products) => {
+            const product = products.find(p => p.id === id);
+            callback(product);
+        });
+    }
+
 }
