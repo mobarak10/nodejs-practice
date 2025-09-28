@@ -20,7 +20,9 @@ const Product = sequelize.define('product', {
     description: {
         type: Sequelize.STRING,
         allowNull: false
-    }
-});
+    },
+},
+{ underscored: true,}
+);
 
 module.exports = Product;
