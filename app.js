@@ -4,6 +4,7 @@ const path = require('path');
 // const {engine} = require('express-handlebars');
 const app = express();
 const errorController = require('./controllers/error');
+// const fs = require('fs');
 
 const sequelize = require('./util/database');
 const User = require('./models/user');
@@ -36,6 +37,9 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+
+// Create a .csv file
+// fs.writeFileSync('data/data.csv', 'id,name,age\n1,Mobarak,25');
 
 app.use(errorController.pageNotFound);
 
